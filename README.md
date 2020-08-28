@@ -1,27 +1,5 @@
 # DSW
 
-# Full list of covariates
-We show the full list of static demographics and time-varying covariates of sepsis patients obtained from [MIMIC-III](https://mimic.physionet.org/).
-| Category     | Items                                                   | Type   |
-|--------------|---------------------------------------------------------|--------|
-| Demographics | age                                                     | Cont.  |
-|              | gender                                                  | Binary |
-|              | race (white, black, hispanic, other)                    | Binary |
-|              | metastatic cancer                                       | Binary |
-|              | diabetes                                                | Binary |
-|              | height                                                  | Cont.  |
-|              | weight                                                  | Cont.  |
-|              | bmi                                                     | Cont.  |
-| Vital signs  | heart rate, systolic, mean and diastolic blood pressure | Cont.  |
-|              | Respiratory rate, SpO2                                  | Cont.  |
-|              | Temperatures                                            | Cont.  |
-| Lab tests    | sodium, chloride, magnesium                             | Cont.  |
-|              | glucose, BUN, creatinine, urineoutput, GCS              | Cont.  |
-|              | white blood cells count, bands, C-Reactive protein      | Cont.  |
-|              | hemoglobin, hematocrit, aniongap                        | Cont.  |
-|              | platelets count, PTT, PT, INR                           | Cont.  |
-|              | bicarbonate, lactate                                    | Cont.  |
-
 # Introduction
 This repository contains source code for paper ["Estimating Individual Treatment Effects with Time-Varying Confounders"](). 
 
@@ -61,6 +39,27 @@ Obtain the patients data of two treatment-outcome pairs: (1) vasopressor-Meanbp;
 cd simulation
 python pre_mimic.py
 ```
+# Full list of covariates
+We show the full list of static demographics and time-varying covariates of sepsis patients obtained from [MIMIC-III](https://mimic.physionet.org/).
+| Category     | Items                                                   | Type   |
+|--------------|---------------------------------------------------------|--------|
+| Demographics | age                                                     | Cont.  |
+|              | gender                                                  | Binary |
+|              | race (white, black, hispanic, other)                    | Binary |
+|              | metastatic cancer                                       | Binary |
+|              | diabetes                                                | Binary |
+|              | height                                                  | Cont.  |
+|              | weight                                                  | Cont.  |
+|              | bmi                                                     | Cont.  |
+| Vital signs  | heart rate, systolic, mean and diastolic blood pressure | Cont.  |
+|              | Respiratory rate, SpO2                                  | Cont.  |
+|              | Temperatures                                            | Cont.  |
+| Lab tests    | sodium, chloride, magnesium                             | Cont.  |
+|              | glucose, BUN, creatinine, urineoutput, GCS              | Cont.  |
+|              | white blood cells count, bands, C-Reactive protein      | Cont.  |
+|              | hemoglobin, hematocrit, aniongap                        | Cont.  |
+|              | platelets count, PTT, PT, INR                           | Cont.  |
+|              | bicarbonate, lactate                                    | Cont.  |
 
 # DSW
 #### Running example 
