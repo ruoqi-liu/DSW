@@ -15,6 +15,7 @@ from model_synthetic import LSTMModel
 HIDDEN_SIZE = 32
 CUDA = True
 
+
 def trainInitIPTW(train_loader, val_loader,test_loader, model, epochs, optimizer, criterion,
                   l1_reg_coef=None, use_cuda=False, save_model=None):
 
@@ -271,7 +272,7 @@ if __name__ == '__main__':
     parser.add_argument('--cuda-device', default=1, type=int, metavar='N',
                         help='which GPU to use')
 
-    parser.add_argument('--split_file', default='../simulation/data_mymodel_new2_{}/train_test_split.csv'.format(gamma), type=str, metavar='PATH',
+    parser.add_argument('--split_file', default='data_synthetic/data_syn_{}/train_test_split.csv'.format(gamma), type=str, metavar='PATH',
                         )
 
     args = parser.parse_args()

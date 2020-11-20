@@ -4,7 +4,7 @@ from torch.utils import data
 
 gamma=0.1
 
-data_dir = 'simulation/data_mymodel_new2_{}/'.format(gamma)
+data_dir = 'data_synthetic/data_syn_{}/'.format(gamma)
 
 
 # dataset meta data
@@ -16,7 +16,6 @@ n_classes = 1
 
 def get_dim():
     return n_X_features, n_X_static_features, n_X_t_types, n_classes
-
 
 
 class SyntheticDataset(data.Dataset):
