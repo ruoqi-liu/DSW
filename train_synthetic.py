@@ -127,14 +127,12 @@ def trainInitIPTW(train_loader, val_loader,test_loader, model, epochs, optimizer
             if save_model:
                 print('Best model. Saving...\n')
                 torch.save(model, save_model)
-
-        if epoch%5 == 0:
-
-            print('Test:')
-            pehe_test,ate_test,mse_test,_ = model_eval(model, test_loader,criterion, eval_use_cuda=use_cuda)
-            best_pehe_test = pehe_test
-            best_ate_test = ate_test
-            best_mse_test = mse_test
+                
+                print('Test:')
+                pehe_test,ate_test,mse_test,_ = model_eval(model, test_loader,criterion, eval_use_cuda=use_cuda)
+                best_pehe_test = pehe_test
+                best_ate_test = ate_test
+                best_mse_test = mse_test
 
     print(np.sqrt(best_pehe_test))
     print(best_ate_test)
