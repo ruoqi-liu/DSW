@@ -84,7 +84,7 @@ def trainInitIPTW(train_loader, val_loader,test_loader, model, epochs, optimizer
 
             outcome_loss = torch.mean(weights*(f_outcome_out - targets[:,0]) ** 2)
 
-            loss = ipw_loss + outcome_loss*0.1
+            loss = ipw_loss * 0.05 + outcome_loss
 
             if l1_reg_coef:
                 l1_regularization = torch.zeros(1)
@@ -169,7 +169,7 @@ def transfer_data(model, dataloader, criterion, eval_use_cuda=False):
 
             outcome_loss = torch.mean((f_outcome_out - targets[:,0]) ** 2)
 
-            loss = ipw_loss + outcome_loss * 0.1
+            loss = ipw_loss * 0.05 + outcome_loss
 
 
             if eval_use_cuda:
