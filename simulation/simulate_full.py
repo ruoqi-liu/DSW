@@ -33,7 +33,7 @@ kappa = 10
 
 S = 20
 
-data_synthetic = "../data_synthetic"
+data_synthetic = "./data_synthetic"
 
 eta, epsilon = np.random.normal(0,0.001, size=(N,T,k)),np.random.normal(0,0.001, size=(N,T,h))
 w = np.random.uniform(-1, 1, size=(h+1, 2))

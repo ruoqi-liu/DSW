@@ -13,7 +13,7 @@ import data_loader_syn
 from model_synthetic import LSTMModel
 
 HIDDEN_SIZE = 32
-CUDA = True
+CUDA = False
 
 
 def trainInitIPTW(train_loader, val_loader,test_loader, model, epochs, optimizer, criterion,
@@ -181,10 +181,10 @@ def transfer_data(model, dataloader, criterion, eval_use_cuda=False):
             else:
                 for i in range(len(ipw_outputs)):
                     ipw_outputs[i]=ipw_outputs[i].detach().data.numpy()
-                ipw_outputs = ipw_outputs.detach().data.numpy()
+                ipw_outputs = np.array(ipw_outputs)
                 x_fr_inputs = x_fr_inputs.detach().data.numpy()
                 targets = targets.detach().data.numpy()
-                outcome_outputs = outcome_outputs.detach().data.numpy()
+                # outcome_outputs = outcome_outputs.detach().data.numpy()
 
             ipw_true.append(np.where(fr_targets.sum(1) > 0, 1, 0))
             f_outcome_true.append(targets[:,0])
