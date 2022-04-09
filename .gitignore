@@ -1,1 +1,4 @@
 venv
+checkpoints
+data_synthetic
+__pycache__
