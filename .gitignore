@@ -2,3 +2,5 @@ venv
 checkpoints
 data_synthetic
 __pycache__
+data
+mimic-iii-clinical-database-1.4
