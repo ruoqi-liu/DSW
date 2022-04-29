@@ -7,15 +7,11 @@ treatment_option = 'vaso'
 observation_window = 30
 step = 3
 
-# read data from mimic-iii database
-icustays = pd.read_csv('../mimic-iii-clinical-database-1.4/ICUSTAYS/ICUSTAYS.csv')
-
 # icustay ids for sepsis patient in MIMIC-III
-treatment_ids = pd.DataFrame(icustays.ICUSTAY_ID)
+treatment_ids = pd.read_csv('../data/icustay_ids.txt')
 
 # hadm ids for sepsis patient in MIMIC-III
-icu2hadm = dict(zip(icustays.HADM_ID, icustays.ICUSTAY_ID))
-
+icu2hadm = pd.read_json('../data/icu_hadm_dict.json', typ='series').to_dict()
 hadm2icu = {icu2hadm[icu]:icu for icu in icu2hadm.keys()}
 
 
