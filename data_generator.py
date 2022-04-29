@@ -49,40 +49,40 @@ for treatment_option, df in [('vaso', vaso_df), ('vent', vent_df)]:
     patient = patient.reshape((10, 1))
     np.save('./data/treatment/{}/{}.npy'.format(treatment_option, ID), patient)
 
-# #------- generating /static/{ID}.static.npy files ------#
-# detail_df = pd.read_csv('./data/detail.csv')
-# comorbid_df = pd.read_csv('./data/comorbid.csv')
-# height_weight_df = pd.read_csv('./data/height_weight.csv')
+#------- generating /static/{ID}.static.npy files ------#
+detail_df = pd.read_csv('./data/detail.csv')
+comorbid_df = pd.read_csv('./data/comorbid.csv')
+height_weight_df = pd.read_csv('./data/height_weight.csv')
 
-# # prune to sepsis3 cohort only
-# detail_df = detail_df[detail_df['hadm_id'].isin(hadm_id_sepsis)]
-# comorbid_df = comorbid_df[comorbid_df['hadm_id'].isin(hadm_id_sepsis)]
-# height_weight_df = height_weight_df[height_weight_df['icustay_id'].isin(icu_id_sepsis)]
+# prune to sepsis3 cohort only
+detail_df = detail_df[detail_df['hadm_id'].isin(hadm_id_sepsis)]
+comorbid_df = comorbid_df[comorbid_df['hadm_id'].isin(hadm_id_sepsis)]
+height_weight_df = height_weight_df[height_weight_df['icustay_id'].isin(icu_id_sepsis)]
 
-# #change height_weight to use hadm_id
-# height_weight_df = height_weight_df.replace({'icustay_id': icu2hadm})
-# height_weight_df.rename(columns={'icustay_id':'hadm_id'}, inplace=True)
+#change height_weight to use hadm_id
+height_weight_df = height_weight_df.replace({'icustay_id': icu2hadm})
+height_weight_df.rename(columns={'icustay_id':'hadm_id'}, inplace=True)
 
-# # calculate race variable
-# detail_df['white'] = detail_df['ethnicity_grouped']=='white'
-# detail_df['black'] = detail_df['ethnicity_grouped']=='black'
-# detail_df['hispanic'] = detail_df['ethnicity_grouped']=='hispanic'
-# detail_df['asian'] = detail_df['ethnicity_grouped']=='asian'
-# detail_df['other'] = ~(detail_df['white'] | detail_df['black'] | detail_df['hispanic'] | detail_df['asian'])
-# detail_df.drop(columns=['ethnicity_grouped'], inplace=True)
+# calculate race variable
+detail_df['white'] = detail_df['ethnicity_grouped']=='white'
+detail_df['black'] = detail_df['ethnicity_grouped']=='black'
+detail_df['hispanic'] = detail_df['ethnicity_grouped']=='hispanic'
+detail_df['asian'] = detail_df['ethnicity_grouped']=='asian'
+detail_df['other'] = ~(detail_df['white'] | detail_df['black'] | detail_df['hispanic'] | detail_df['asian'])
+detail_df.drop(columns=['ethnicity_grouped'], inplace=True)
 
-# # calculate bmi variable
-# height_weight_df['bmi'] = height_weight_df['weight_first'] / (height_weight_df['height_first']/100)**2
+# calculate bmi variable
+height_weight_df['bmi'] = height_weight_df['weight_first'] / (height_weight_df['height_first']/100)**2
 
-# # merging all time varying data into one df
-# static_df = detail_df.merge(comorbid_df, on='hadm_id', how='inner')
-# static_df = static_df.merge(height_weight_df, on='hadm_id', how='inner')
+# merging all time varying data into one df
+static_df = detail_df.merge(comorbid_df, on='hadm_id', how='inner')
+static_df = static_df.merge(height_weight_df, on='hadm_id', how='inner')
 
-# # save each patient demographic details to static.npy file
-# for ID in list(static_df['hadm_id']):
-#   patient = static_df[static_df['hadm_id'] == ID]
-#   patient = patient.loc[:, patient.columns!='hadm_id']
-#   np.save('./data/static/{}.static.npy'.format(ID), patient.to_numpy()[0])
+# save each patient demographic details to static.npy file
+for ID in list(static_df['hadm_id']):
+  patient = static_df[static_df['hadm_id'] == ID]
+  patient = patient.loc[:, patient.columns!='hadm_id']
+  np.save('./data/static/{}.static.npy'.format(ID), patient.to_numpy()[0])
 
 # # ------- generating time variable x/{ID}.csv files ------#
 # vitals_df = pd.read_csv('./data/pivoted_vitals.csv')
