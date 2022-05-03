@@ -30,10 +30,10 @@ hadm2icu = {icu2hadm[icu]:icu for icu in icu2hadm.keys()}
 data_dir = "../data"
 data_synthetic = "../data_synthetic"
 
-var = ['hemoglobin','C-reactive protein','heartrate','creatinine',
+var = ['hemoglobin','heartrate','creatinine',
  'hematocrit','sysbp','tempc','pt','sodium','diasbp', 'gcs_min','platelet','ptt',
  'chloride','resprate','glucose','bicarbonate','bands', 'bun',
- 'Magnesium','urineoutput','inr','lactate','aniongap','spo2','wbc','meanbp']
+ 'urineoutput','inr','lactate','aniongap','spo2','wbc','meanbp']
 
 n_classes = 1
 n_X_features = len(var)
@@ -42,7 +42,7 @@ n_X_static_features = 12
 X = []
 used_ID = []
 for ii, ID in tqdm(enumerate(hadm2icu.keys())):
-    tmp = pd.read_csv(data_dir+'x/{}.csv'.format(ID))
+    tmp = pd.read_csv(data_dir+'/x/{}.csv'.format(ID))
     tmp = tmp[(tmp['time'] > 0) & (tmp['time'] < 33)]
     if len(tmp) == 11:
         icu = hadm2icu[ID]
@@ -56,8 +56,8 @@ for i in range(len(used_ID)):
 
 X_static = np.random.normal(0, 0.5, size=(len(used_ID),n_X_static_features))
 for j, ID in enumerate(used_ID):
-    if os.path.exists(data_dir + 'static/%d.static.npy' % ID):
-        X_static[j] = np.load(data_dir + 'static/%d.static.npy' % ID)
+    if os.path.exists(data_dir + '/static/%d.static.npy' % ID):
+        X_static[j] = np.load(data_dir + '/static/%d.static.npy' % ID)
     else:
         print(ID)
 X_static=np.nan_to_num(X_static)
@@ -65,8 +65,8 @@ X_static=np.nan_to_num(X_static)
 
 A = np.zeros(shape=(len(used_ID), observation_window//step))
 for ii, ID in tqdm(enumerate(used_ID)):
-    if os.path.exists('{}/treatment/{}.npy'.format(data_dir, ID)):
-        A[ii, :] = np.load('{}/treatment/{}.npy'.format(data_dir, ID))
+    if os.path.exists('{}/treatment/{}/{}.npy'.format(data_dir, treatment_option, ID)):
+        A[ii, :] = np.load('{}/treatment/{}/{}.npy'.format(data_dir, treatment_option, ID))
     else:
         A[ii, :] = np.zeros(observation_window//step)
 
