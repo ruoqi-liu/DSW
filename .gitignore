@@ -3,3 +3,4 @@ checkpoints
 data_synthetic
 __pycache__
 data
+mysql/sql_instance
