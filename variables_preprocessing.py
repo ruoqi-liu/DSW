@@ -10,6 +10,8 @@ vitals_df = pd.read_csv('./data/pivoted_vitals.csv')
 vitals_df = vitals_df[vitals_df['icustay_id'].isin(icu_id_sepsis)]
 vitals_df = vitals_df.replace({'icustay_id': icu2hadm})
 vitals_df.rename(columns={'icustay_id':'hadm_id'}, inplace=True)
+vitals_df['charttime'] = vitals_df['charttime'].str.replace('\S{6}$', ':00:00', regex=True)
+vitals_df['charttime'] = pd.to_datetime(vitals_df['charttime'], format='%Y-%m-%d %H:%M:%S')
 vitals_df.to_csv('./data/processed_pivoted_vitals.csv', index=False)
 del vitals_df
 vitals_df = None
