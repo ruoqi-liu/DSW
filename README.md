@@ -23,22 +23,16 @@ Install [pytorch 1.4](https://pytorch.org/)
 Simulate the all covariates, treatments and outcomes
 ```
 cd simulation
-python synthetic.py
+python simulate_full.py
 ```
 
 ### Semi-synthetic dataset
 With a similar simulation process, we construct a semi-synthetic dataset based on a real-world dataset: [MIMIC-III](https://mimic.physionet.org/). 
 ```
 cd simulation
-python synthetic_mimic.py
+python simulate_mimic.py
 ```
 
-### MIMIC-III dataset
-Obtain the patients data of two treatment-outcome pairs: (1) vasopressor-Meanbp; (2) ventilator-SpO2.
-```
-cd simulation
-python pre_mimic.py
-```
 # Full list of covariates
 We show the full list of static demographics and time-varying covariates of sepsis patients obtained from [MIMIC-III](https://mimic.physionet.org/).
 | Category     | Items                                                   | Type   |
